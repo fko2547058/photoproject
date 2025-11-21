@@ -1,6 +1,5 @@
 <!-- 静的ファイルのURLを生成するstaticタグをロードする-->
 {% load static %}
-
 <!doctype html>
 <!-- 言語指定をenからjaに変更-->
 <html lang="ja">
@@ -65,7 +64,7 @@
                        class="text-white">マイページ</a></li>
                 <li><a href="{% url 'accounts:logout' %}"
                        class="text-white">ログアウト</a></li>
-                <li><a href="#"
+                <li><a href="{% url 'password_reset' %}"
                        class="text-white">パスワードのリセット</a></li>
                 <li><a href="mailto:admin@example.com"
                        class="text-white">Email me</a></li>

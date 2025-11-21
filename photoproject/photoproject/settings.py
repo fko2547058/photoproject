@@ -10,8 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
  
-from pathlib import Path
+
 import os
+from pathlib import Path
  
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # photoアプリを追加する
     'photo.apps.PhotoConfig',
+    # accountsアプリを追加する
     'accounts.apps.AccountsConfig',
 ]
  
@@ -106,20 +109,24 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
  
+# 使用言語を日本語に設定
 LANGUAGE_CODE = 'ja'
- 
+
+# タイムゾーンを設定
 TIME_ZONE = 'Asia/Tokyo'
- 
+
 USE_I18N = True
- 
+
 USE_TZ = True
- 
- 
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
- 
+
 STATIC_URL = 'static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
+
+# staticフォルダーのフルパスを設定
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
  
  
 # Default primary key field type
@@ -127,3 +134,11 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
  
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+# メールサーバーへの接続設定
+DEFAULT_FROM_EMAIL = 'lln7ly.i3@gmail.com'  # メールの送信元のアドレス
+EMAIL_HOST = 'smtp.gmail.com'               # GmailのSMPTサーバー
+EMAIL_PORT = 587                            # SMPTサーバーのポート番号
+EMAIL_HOST_USER = 'lln7ly.i3@gmail.com'     # Gmailのアドレス
+EMAIL_HOST_PASSWORD = 'josgbjgmrkzjiilm' # Gmailのアプリ用パスワード
+EMAIL_USE_TLS = True    #SMTPサーバーと通信する際にTLS（セキュア）接続を使う
