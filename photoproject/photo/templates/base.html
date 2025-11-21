@@ -2,6 +2,7 @@
 {% load static %}
 
 <!doctype html>
+<!-- 言語指定をenからjaに変更-->
 <html lang="ja">
   <head>
     <meta charset="utf-8">
@@ -58,9 +59,25 @@
               <h4 class="text-white">Contact</h4>
               <ul class="list-unstyled">
                 <!-- ナビゲーションメニュー-->
-                <li><a href="#" class="text-white">サインアップ</a></li>
-                <li><a href="#" class="text-white">ログイン</a></li>
-                <li><a href="mailto@st.o-hara.ac.jp" class="text-white">Email me</a><li>
+                                {% if user.is_authenticated %}
+                <!-- ログイン中のメニュー-->
+                <li><a href="{% url 'photo:mypage' %}"
+                       class="text-white">マイページ</a></li>
+                <li><a href="{% url 'accounts:logout' %}"
+                       class="text-white">ログアウト</a></li>
+                <li><a href="{% url 'password_reset' %}"
+                       class="text-white">パスワードのリセット</a></li>
+                <li><a href="mailto:admin@example.com"
+                       class="text-white">Email me</a></li>
+                {% else %}
+                <!-- ログイン状態ではない場合のメニュー-->
+                <li><a href="{% url 'accounts:signup' %}" 
+                       class="text-white">サインアップ</a></li>
+                <li><a href="{% url 'accounts:login' %}"
+                       class="text-white">ログイン</a></li>
+                <li><a href="mailto:admin@example.com" 
+                       class="text-white">Email me</a></li>
+                {% endif %}
               </ul>
             </div>
           </div>
